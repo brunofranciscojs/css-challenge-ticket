@@ -1,7 +1,7 @@
 [
   {
     "company": "Swiss Express",
-    "price": "R$240",
+    "price": 240,
     "from": {
       "code": "ZUR",
       "city": "Zurich"
@@ -13,7 +13,7 @@
     "duration": "1h 23m",
     "passenger": {
       "name": "Bruno Francisco",
-      "email": "dimarpejos@gmail.com",
+      "email": "klapaucius@yandex.ru",
       "seat": "A2"
     },
     "train_no": "JWI008",
@@ -25,7 +25,7 @@
   },
   {
     "company": "Alpine Railways",
-    "price": "R$180",
+    "price": 180,
     "from": {
       "code": "GEN",
       "city": "Geneva"
@@ -49,7 +49,7 @@
   },
   {
     "company": "Swiss Express",
-    "price": "R$310",
+    "price": 310,
     "from": {
       "code": "BAS",
       "city": "Basel"
@@ -73,7 +73,7 @@
   },
   {
     "company": "Euro Rail",
-    "price": "R$275",
+    "price": 275,
     "from": {
       "code": "INT",
       "city": "Interlaken"
@@ -97,7 +97,7 @@
   },
   {
     "company": "Alpine Express",
-    "price": "R$199",
+    "price": 199,
     "from": {
       "code": "STG",
       "city": "St. Gallen"

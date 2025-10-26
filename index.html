@@ -8,22 +8,25 @@
     <meta name="robots" content="noindex">
 
   </head>
-  <body class="place-content-center h-dvh font-['system-ui'] bg-yellow-300 overflow-x-hidden">
+  <body class="place-content-center h-dvh font-['system-ui'] bg-yellow-300 overflow-x-hidden [&_*]:font-['Roboto']">
 
     <main class="mx-auto flex overflow-x-scroll gap-12 p-8 w-full [&::-webkit-scrollbar]:w-0 max-w-[1440px] [anchor-name:--carrossel] snap-mandatory [scroll-marker-group:after] [container-type:inline-size] [overscroll-behavior-x:contain]"></main>
 
     <script>
         let html = '';
-        const consolar = (indice) => console.log(indice)
+        const consolar = (indice) => console.log(indice);
+        const barWidth = (num) => Math.floor(Math.random()*num);
+        const preco = (num) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(num);
+
+        const bars = Array.from({length: 50}).map((bar,index) => `<b class="w-[${barWidth(index)}px]"></b>`).join('')
 
         fetch('./tickets.json').then(res => res.json()).then(tickets =>{
 
-            const bars = Array.from({length: 50}).map((bar,index) => `<span class="bg-black w-[${Math.floor(Math.random()*index)}px] inline-block h-full"></span>`).join('')
             tickets.map((ticket,index) =>{ 
 
                 html +=
             `<div class="max-w-[430px] item select-none flex flex-col bg-white rounded-[2rem] py-5 gap-9 [&_>div]:px-7 [corner-shape:squircle] border-2 border-gray-300">
-                <div class="flex relative justify-between pb-6 border-b-2 border-dashed border-gray-300 items-center 
+                <div class="company flex relative justify-between pb-6 border-b-2 border-dashed border-gray-300 items-center 
                         before:content-['']
                         before:bg-yellow-300
                         before:absolute
@@ -52,7 +55,7 @@
                     <h1 class="inline-block font-bold">${ticket.company}</h1>
                 </div>
                 <div class="font-bold">
-                    ${ticket.price}
+                    ${preco(ticket.price)}
                 </div>
             </div>
     
@@ -65,7 +68,7 @@
 
                 <div class="bg-yellow-300 z-1 px-1.5 rounded-full border border-black flex gap-1 items-center h-7 relative [anchor-name:--lines-${index+1}]">
                     <img src="./train.svg" class="inline w-4">
-                    <span class="font-bold">${ticket.duration}</span>
+                    <time class="font-bold">${ticket.duration}</time>
                 </div>
 
                 <span class="border-dashed border-gray-400 border-1 w-[130px] z-0 [position-anchor:--lines-${index+1}] [position-area:center_center] absolute
@@ -124,11 +127,11 @@
             <div class="flex justify-between imtes-center">
                 <div>
                     <sup class="font-[100] block ">Departure</sup>
-                    <h2 class="font-bold">${ticket.departure}</h2>
+                    <time class="font-bold">${ticket.departure}</time>
                 </div>
                 <div>
                     <sup class="font-[100] block text-right">Arrival</sup>
-                    <h2 class="font-bold">${ticket.arrival}</h2>
+                    <time class="font-bold">${ticket.arrival}</time>
                 </div>
             </div>
 
@@ -144,7 +147,7 @@
             </div>
 
             <div class="bg-yellow-100 h-23 p-6 saturate-40 border-gray-300 border-b">
-                <code class="w-full flex h-full gap-1 [scale:-1_1]">
+                <code class="w-full flex h-full gap-1 [scale:-1_1] [&_b]:bg-black [&_b]:inline-block [&_b]:h-full">
                     ${bars}
                 </code>
             </div>
@@ -159,6 +162,7 @@
 
     </script>
        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
         main{
             scroll-behavior: smooth;
             &::scroll-button(right),
