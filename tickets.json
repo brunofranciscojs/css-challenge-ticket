@@ -1,0 +1,122 @@
+[
+  {
+    "company": "Swiss Express",
+    "price": "R$240",
+    "from": {
+      "code": "ZUR",
+      "city": "Zurich"
+    },
+    "to": {
+      "code": "LUZ",
+      "city": "Luzern"
+    },
+    "duration": "1h 23m",
+    "passenger": {
+      "name": "Bruno Francisco",
+      "email": "dimarpejos@gmail.com",
+      "seat": "A2"
+    },
+    "train_no": "JWI008",
+    "class": "Business",
+    "departure": "10:30 AM",
+    "arrival": "2:45 PM",
+    "terminal": "6D",
+    "gate": "B16"
+  },
+  {
+    "company": "Alpine Railways",
+    "price": "R$180",
+    "from": {
+      "code": "GEN",
+      "city": "Geneva"
+    },
+    "to": {
+      "code": "BER",
+      "city": "Bern"
+    },
+    "duration": "2h 05m",
+    "passenger": {
+      "name": "Laura Meier",
+      "email": "laura.meier@railmail.ch",
+      "seat": "C4"
+    },
+    "train_no": "ALP452",
+    "class": "Economy",
+    "departure": "8:15 AM",
+    "arrival": "10:20 AM",
+    "terminal": "3A",
+    "gate": "D12"
+  },
+  {
+    "company": "Swiss Express",
+    "price": "R$310",
+    "from": {
+      "code": "BAS",
+      "city": "Basel"
+    },
+    "to": {
+      "code": "LUG",
+      "city": "Lugano"
+    },
+    "duration": "3h 10m",
+    "passenger": {
+      "name": "Mateo Costa",
+      "email": "mateo.costa@outlook.com",
+      "seat": "B7"
+    },
+    "train_no": "SWE213",
+    "class": "Business",
+    "departure": "9:40 AM",
+    "arrival": "12:50 PM",
+    "terminal": "2C",
+    "gate": "A09"
+  },
+  {
+    "company": "Euro Rail",
+    "price": "R$275",
+    "from": {
+      "code": "INT",
+      "city": "Interlaken"
+    },
+    "to": {
+      "code": "ZUR",
+      "city": "Zurich"
+    },
+    "duration": "1h 55m",
+    "passenger": {
+      "name": "Sofia Bernard",
+      "email": "sofia.bernard@mail.ch",
+      "seat": "A6"
+    },
+    "train_no": "EUR923",
+    "class": "Premium",
+    "departure": "3:10 PM",
+    "arrival": "5:05 PM",
+    "terminal": "5B",
+    "gate": "C21"
+  },
+  {
+    "company": "Alpine Express",
+    "price": "R$199",
+    "from": {
+      "code": "STG",
+      "city": "St. Gallen"
+    },
+    "to": {
+      "code": "BER",
+      "city": "Bern"
+    },
+    "duration": "2h 30m",
+    "passenger": {
+      "name": "Camila Torres",
+      "email": "camila.torres@travel.ch",
+      "seat": "D1"
+    },
+    "train_no": "ALX777",
+    "class": "Economy",
+    "departure": "11:00 AM",
+    "arrival": "1:30 PM",
+    "terminal": "4D",
+    "gate": "E04"
+  }
+]
