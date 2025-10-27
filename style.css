@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+        main{
+            scroll-behavior: smooth;
+            &::scroll-button(right),
+            &::scroll-button(left){
+                content:'→';
+                border: none;
+                font-size: 1rem;
+                color: white;
+                background: black;
+                border-radius: 50%;
+                height: 40px;
+                width: 40px;
+                cursor: pointer;
+                position: fixed;
+                position-anchor: --carrossel;
+                position-area:right center ;
+                line-height: 0;
+                padding-bottom: .2rem;
+            }
+            &::scroll-button(left){
+                content:'←';
+                position-area:left center;
+
+                @media screen and (max-width:1111px){
+                   translate: 50%;
+                   
+                }
+                @media screen and (max-width:1080px){
+                   translate: 100%;
+                }
+                @media screen and (max-width:1024px){
+                   position-area:left bottom;
+                   translate: 50vw !important;
+                }
+                
+            }
+            &::scroll-button(right){
+                @media screen and (max-width:1024px){
+                   position-area:right bottom;
+                   translate: -50vw !important;
+                }
+                @media screen and (max-width:1111px){
+                   translate: -50%;
+                }
+                @media screen and (max-width:1080px){
+                   translate: -100%;
+                }
+            }
+             &::scroll-button(right):disabled,
+             &::scroll-button(left):disabled{
+                opacity: .5;
+             }
+        }
