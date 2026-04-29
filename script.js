@@ -9,32 +9,9 @@
 
             tickets.map((ticket,index) =>{ 
 
-                html +=
-            `<div class="max-w-[430px] item select-none flex flex-col bg-white rounded-[2rem] py-5 gap-9 [&_>div]:px-7 [corner-shape:squircle] border-2 border-gray-300">
-                <div class="company flex relative justify-between pb-6 border-b-2 border-dashed border-gray-300 items-center 
-                        before:content-['']
-                        before:bg-yellow-300
-                        before:absolute
-                        before:-left-3
-                        before:-bottom-3
-                        before:w-6
-                        before:h-6
-                        before:rounded-full
-                        before:border-2 
-                        before:border-gray-300
-                        before:[clip-path:circle(50%_at_70%_50%)]
-
-                        after:border-gray-300
-                        after:[clip-path:circle(50%_at_30%_50%)]
-                        after:border-2 
-                        after:content-['']
-                        after:bg-yellow-300
-                        after:absolute
-                        after:-right-3
-                        after:-bottom-3
-                        after:w-6
-                        after:h-6
-                        after:rounded-full">
+            html +=
+            `<div class="max-w-[430px] mask-[linear-gradient(#000_0_0),radial-gradient(circle_10px_at_100%_80px,transparent_99%,#000_101%),radial-gradient(circle_10px_at_0_80px,transparent_99%,#000_101%)] mask-exclude item select-none flex flex-col bg-white rounded-[2rem] py-5 gap-9 [&_>div]:px-7 [corner-shape:squircle] border-2 border-gray-300">
+                <div class="company flex relative justify-between pb-6 border-b-2 border-dashed border-gray-300 items-center ">
                 <div class="flex items-center gap-3">
                     <img src="./train.svg" class="inline w-8 bg-yellow-300 p-1.5 rounded-full border border-black">
                     <h1 class="inline-block font-bold">${ticket.company}</h1>
