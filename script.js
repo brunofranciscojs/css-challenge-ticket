@@ -3,121 +3,108 @@
         const barWidth = (num) => Math.floor(Math.random()*num);
         const preco = (num) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(num);
 
-        const bars = Array.from({length: 50}).map((bar,index) => `<b class="w-[${barWidth(index)}px]"></b>`).join('')
+        const bars = Array.from({length: 50}).map((bar,index) => `<b class="w-[${barWidth(index+1)}px]"></b>`).reverse().join('')
 
         fetch('./tickets.json').then(res => res.json()).then(tickets =>{
 
-            tickets.map((ticket,index) =>{ 
-
+            tickets.map((ticket,i) =>{ 
             html +=
-            `<div class="max-w-[430px] mask-[linear-gradient(#000_0_0),radial-gradient(circle_10px_at_100%_80px,transparent_99%,#000_101%),radial-gradient(circle_10px_at_0_80px,transparent_99%,#000_101%)] mask-exclude item select-none flex flex-col bg-white rounded-[2rem] py-5 gap-9 [&_>div]:px-7 [corner-shape:squircle] border-2 border-gray-300">
-                <div class="company flex relative justify-between pb-6 border-b-2 border-dashed border-gray-300 items-center ">
-                <div class="flex items-center gap-3">
-                    <img src="./train.svg" class="inline w-8 bg-yellow-300 p-1.5 rounded-full border border-black">
-                    <h1 class="inline-block font-bold">${ticket.company}</h1>
-                </div>
-                <div class="font-bold">
-                    ${preco(ticket.price)}
-                </div>
-            </div>
-    
-            <div class="flex justify-between items-center">
+            `    <div class="grid overflow-hidden [grid-template-columns:9rem_1fr_1fr] [grid-template-areas:'line_._price''hr_hr_hr''abbr_dur_dest''name_._seat''train_._class''departure_._arrival''terminal_._gate''barcode_barcode_barcode''download_download_download'] px-5 items-center  w-full min-w-[430px] mask-[linear-gradient(#000_0_0),radial-gradient(circle_10px_at_100%_80px,transparent_99%,#000_101%),radial-gradient(circle_10px_at_0_80px,transparent_99%,#000_101%)] mask-exclude item select-none bg-white rounded-[2rem] py-5 gap-y-6 [corner-shape:squircle] border-2 border-gray-300">
+                    <h1 class="font-bold text-nowrap [grid-area:line] before:bg-[#ffdf20] before:rounded-full before:border before:p-1 before:content-[url(./train.svg)] before:inline-grid before:relative before:w-7 before:h-7 before:top-1">
+                        ${ticket.company}
+                    </h1>
+                    
+                    <span class="justify-self-end font-bold [grid-area:price]"> ${preco(240)}</span>
+                    <hr class="border-gray-300 [grid-area:hr] border-t-2 border-dashed w-full scale-[1.2_1] translate-y-1">
+                    
+                    <h2 class="font-bold leading-[0] h-fit w-fit text-2xl [grid-area:abbr] 
+                            after:content-[attr(data-city)] 
+                            after:text-xs 
+                            after:leading-[0] 
+                            after:block 
+                            after:top-4.5
+                            after:relative
+                            after:font-semibold 
+                            after:text-center" 
+                        data-city="${ticket.from.city}">
+                        ${ticket.from.code}
+                    </h2>
 
-                <div class="flex flex-col item-center gap-3 text-center justify-center">
-                    <h2 class="font-bold leading-[0] text-2xl">${ticket.from.code}</h2>
-                    <sub class="text-xs leading-[.7]">${ticket.from.city}</sub>
-                </div>
+                    <time class="bg-[#ffdf20] py-[2px] px-2 border-2 w-fit text-nowrap rounded-3xl font-bold [grid-area:dur] [anchor-name:--lines-${i+1}]
+                                    before:content-['']
+                                    before:bg-[radial-gradient(circle_at_3%_center,#ffdf20_4px,transparent_5px),radial-gradient(circle_at_97%_center,#ffdf20_4px,transparent_5px)]
+                                    before:absolute
+                                    before:[position-anchor:--lines-${i+1}]
+                                    before:left-[anchor(center)]
+                                    before:top-[anchor(center)]
+                                    before:[translate:-50%_-50%]
+                                    before:w-[calc(anchor-size(width)+5rem)]
+                                    before:h-3
 
-                <div class="bg-yellow-300 z-1 px-1.5 rounded-full border border-black flex gap-1 items-center h-7 relative [anchor-name:--lines-${index+1}]">
-                    <img src="./train.svg" class="inline w-4">
-                    <time class="font-bold">${ticket.duration}</time>
-                </div>
+                                    after:content-['']
+                                    after:border-dashed 
+                                    after:border-gray-400 
+                                    after:border-1 
+                                    after:w-[calc(anchor-size(width)+4rem)]
+                                    after:-z-1 
+                                    after:[position-anchor:--lines-${i+1}] 
+                                    after:left-[anchor(center)]
+                                    after:top-[anchor(center)]
+                                    after:absolute
+                                    after:[translate:-50%_-50%]">
+                        <img src="./train.svg" class="inline w-4 h-4 mr-1"> ${ticket.duration}
+                    </time>
 
-                <span class="border-dashed border-gray-400 border-1 w-[130px] z-0 [position-anchor:--lines-${index+1}] [position-area:center_center] absolute
-                            before:content-['']
-                            before:bg-yellow-300
-                            before:absolute
-                            before:-left-3
-                            before:-bottom-1
-                            before:w-2
-                            before:h-2
-                            before:rounded-full
-                            
-                            after:content-['']
-                            after:bg-yellow-300
-                            after:absolute
-                            after:-right-3
-                            after:-bottom-1
-                            after:w-2
-                            after:h-2
-                            after:rounded-full">
-                </span>
+                    <address class="[grid-area:dest] h-fit w-fit font-bold justify-self-end leading-[0] text-2xl 
+                                    after:content-[attr(data-dest)] 
+                                    after:text-[12px]
+                                    after:leading-[0] 
+                                    after:block 
+                                    after:top-4.5
+                                    after:relative
+                                    after:font-semibold 
+                                    after:text-center"
+                        data-dest="${ticket.to.city}" >
+                        ${ticket.to.code}
+                    </address>
 
-                <div class="flex flex-col item-center gap-3 text-center justify-center">
-                    <h2 class="font-bold leading-[0] text-2xl">${ticket.to.code}</h2>
-                    <sub class="text-xs leading-[.7]">${ticket.to.city}</sub>
-                </div>
-            </div>
+                    <h2 class="font-bold text-lg leading-[1] [grid-area:name] flex gap-3 relative text-nowrap
+                                    before:bg-[url(./bruno.png)] 
+                                    before:bg-cover 
+                                    before:bg-center
+                                    before:bg-no-repeat
+                                    before:border 
+                                    before:rounded-full
+                                    before:min-w-12
+                                    before:h-12 
+                                    
+                                    after:content-[attr(data-email)] 
+                                    after:text-sm
+                                    after:leading-[0] 
+                                    after:absolute 
+                                    after:top-8
+                                    after:left-15
+                                    after:font-thin" 
+                        data-email="${ticket.passenger.email}">
+                        ${ticket.passenger.name}
+                    </h2>
+                    
+                    <h2 class="relative leading-[0] font-bold text-xl justify-self-end [grid-area:seat] 
+                              after:content-[attr(data-seat)] after:text-[12px] after:leading-[0] 
+                              after:absolute after:-top-5 after:left-0 after:font-[400]" 
+                            data-seat="Seat">
+                            ${ticket.passenger.seat}
+                    </h2>
 
-            <div class="flex gap-3 items-center justify-between">
-                <div class="flex gap-3 items-center">
-                    <div>
-                        <img src="./bruno.png" class="w-12 h-12 rounded-full border-black border object-cover bg-gray-200">
-                    </div>
-                    <div>
-                        <h2 class="font-bold text-lg leading-[1]">${ticket.passenger.name}</h2>
-                        <span class="font-[100] text-sm">${ticket.passenger.email}</span>
-                    </div>
-                </div>
-                <div class="h-8">
-                    <sup class="leading-[1.8] block">Seat</sup>
-                    <h2 class="leading-[0] font-bold text-xl">${ticket.passenger.seat}</h2>
-                </div>
-            </div>
-
-            <div class="flex justify-between items-center">
-                <div>
-                    <sup class="font-[100] block ">Train No</sup>
-                    <h2 class="font-bold">${ticket.train_no}</h2>
-                </div>
-                <div>
-                    <sup class="font-[100] block text-right">Class</sup>
-                    <h2 class="font-bold">${ticket.class}</h2>
-                </div>
-            </div>
-            
-            <div class="flex justify-between items-center">
-                <div>
-                    <sup class="font-[100] block ">Departure</sup>
-                    <time class="font-bold">${ticket.departure}</time>
-                </div>
-                <div>
-                    <sup class="font-[100] block text-right">Arrival</sup>
-                    <time class="font-bold">${ticket.arrival}</time>
-                </div>
-            </div>
-
-            <div class="flex justify-between items-center">
-                <div>
-                    <sup class="font-[100] block ">Terminal</sup>
-                    <h2 class="font-bold">${ticket.terminal}</h2>
-                </div>
-                <div>
-                    <sup class="font-[100] block text-right">Gate</sup>
-                    <h2 class="font-bold">${ticket.gate}</h2>
-                </div>
-            </div>
-
-            <div class="bg-yellow-100 h-23 p-6 saturate-40 border-gray-300 border-b">
-                <code class="w-full flex h-full gap-1 [scale:-1_1] [&_b]:bg-black [&_b]:inline-block [&_b]:h-full">
-                    ${bars}
-                </code>
-            </div>
-
-            <div class="flex items-center justify-center font-bold -translate-y-3">
-                <button class="cursor-pointer" onclick="consolar('${ticket.passenger.name}')">Download Ticket</button>
-            </div>
-        </div>`;
+                    <h2 class="font-bold [grid-area:train] before:content-['Train_No'] before:text-[12px] before:block before:font-[100]">${ticket.train_no}</h2>
+                    <h2 class="font-bold text-right justify-self-end [grid-area:class] before:text-[12px] before:content-['Class'] before:block before:font-[100]">${ticket.class}</h2>
+                    <time class="font-bold [grid-area:departure] before:content-['Departure'] before:text-[12px] before:block before:font-[100]">${ticket.departure}</time>
+                    <time class="font-bold text-right justify-self-end [grid-area:arrival] before:content-['Arrival'] before:text-[12px] before:block before:font-[100]">${ticket.arrival}</time>
+                    <h2 class="font-bold [grid-area:terminal] before:content-['Terminal'] before:text-[12px] before:block before:font-[100]">${ticket.terminal}</h2>
+                    <h2 class="font-bold text-right justify-self-end [grid-area:gate] before:content-['Gate'] before:text-[12px] before:block before:font-[100]">${ticket.gate}</h2>
+                    <code class="w-full flex h-full gap-1 [scale:1.2_1] [&_b]:bg-black [&_b]:inline-block [&_b]:h-full bg-yellow-100 h-23 py-6 px-8 saturate-40 border-gray-300 border-b [grid-area:barcode] min-h-[90px]">${bars}</code>
+                    <button class="cursor-pointer [grid-area:download] font-bold" onclick="console.log('${ticket.passenger.name}')">Download Ticket</button>
+            </div>`;
         });
         document.querySelector('main').innerHTML = html
     })
